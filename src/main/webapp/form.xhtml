@@ -6,30 +6,67 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-    <title>Hello World</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>JSF Project</title>
+
+    <style type="text/css">
+        .row {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .form-horizontal .form-group {
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+    </style>
 </h:head>
 <h:body>
-    <h2>Remplir le formulaire:</h2>
-<h:form>
-    <table>
+    <h2>Envoyer un Mail:</h2>
+    <h:form styleClass="form-horizontal">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="form-group">
+                <h:outputLabel value="From" styleClass="control-label col-md-1"/>
+                <div class="col-md-7">
+                    <h:inputText value="#{email.from}" styleClass="form-control"/>
+                </div>
+            </div>
+        </div>
 
-        <tr>
-           <td>From :</td> <td><h:inputText value="#{email.from}" label="Prénom" ></h:inputText></td>
-        </tr>
-        <tr>
-            <td>Subject :</td> <td><h:inputText value="#{email.subject}" label="Nom"></h:inputText></td>
-        </tr>
-        <tr>
-            <td>Recipient :</td> <td><h:inputText value="#{email.recipient}" label="Nom"></h:inputText></td>
-        </tr>
-        <tr>
-            <td>Subject :</td> <td> <h:inputTextarea cols="30" rows="10" value="#{email.text}" label="text"/></td>
-        </tr>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="form-group">
+                <h:outputLabel value="To" styleClass="control-label col-md-1"/>
+                <div class="col-md-7">
+                    <h:inputText value="#{email.recipient}" styleClass="form-control"/>
+                </div>
+            </div>
+        </div>
 
-      <tr><td><h:commandButton value="Welcome Me" action="#{serviceMail.sendMail(email)}">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="form-group">
+                <h:outputLabel value="Object" styleClass="control-label col-md-1"/>
+                <div class="col-md-7">
+                    <h:inputText value="#{email.subject}" styleClass="form-control"/>
+                </div>
+            </div>
+        </div>
 
-      </h:commandButton></td></tr>
-    </table>
-</h:form>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="form-group">
+                <h:outputLabel value="Message" styleClass="control-label col-md-1"/>
+                <div class="col-md-7">
+                    <h:inputTextarea value="#{email.text}" styleClass="form-control"/>
+                </div>
+            </div>
+        </div>
+
+        <h:commandButton styleClass="btn btn-primary" value="Send" action="#{serviceMail.sendMail(email)}"
+                         style="margin-left: 50%;"></h:commandButton>
+    </h:form>
 </h:body>
 </html>
